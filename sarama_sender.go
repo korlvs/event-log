@@ -2,6 +2,7 @@ package outbox
 
 import (
 	"context"
+	"crypto/tls"
 	"fmt"
 
 	"github.com/IBM/sarama"
@@ -12,11 +13,28 @@ type SaramaSender struct {
 	topic    string
 }
 
-func NewSaramaSender(brokers []string, topic string) (*SaramaSender, error) {
+func NewSaramaSender(brokers []string, topic, username, password string, tlsEnabled, tlsInsecureSkipVerify bool) (*SaramaSender, error) {
 	config := sarama.NewConfig()
 	config.Producer.RequiredAcks = sarama.WaitForAll
 	config.Producer.Retry.Max = 5
 	config.Producer.Return.Successes = true
+
+	// Аутентификация
+	if username != "" && password != "" {
+		config.Net.SASL.Enable = true
+		config.Net.SASL.User = username
+		config.Net.SASL.Password = password
+		config.Net.SASL.Mechanism = sarama.SASLTypePlaintext
+	}
+
+	// TLS
+	if tlsEnabled {
+		config.Net.TLS.Enable = true
+		config.Net.TLS.Config = &tls.Config{
+			InsecureSkipVerify: tlsInsecureSkipVerify,
+		}
+	}
+
 	producer, err := sarama.NewSyncProducer(brokers, config)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create sarama producer: %w", err)

@@ -20,4 +20,7 @@ type Config struct {
 	Schema               string
 	StoreJSON            bool
 	EnableConsoleLogging bool
+
+	KafkaTLSEnabled            bool
+	KafkaTLSInsecureSkipVerify bool
 }

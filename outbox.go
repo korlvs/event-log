@@ -78,7 +78,14 @@ func (o *Outbox) tryCreateSender() {
 	case "schema-registry":
 		sender, err = NewRestSender(o.cfg)
 	case "binary":
-		sender, err = NewSaramaSender(o.cfg.KafkaBrokers, o.cfg.KafkaTopic)
+		sender, err = NewSaramaSender(
+			o.cfg.KafkaBrokers,
+			o.cfg.KafkaTopic,
+			o.cfg.KafkaUsername,
+			o.cfg.KafkaPassword,
+			o.cfg.KafkaTLSEnabled,
+			o.cfg.KafkaTLSInsecureSkipVerify,
+		)
 	}
 	if err != nil {
 		log.Printf("outbox: failed to create Kafka sender: %v (will retry later)", err)

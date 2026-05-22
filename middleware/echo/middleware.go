@@ -1,7 +1,7 @@
 package echo
 
 import (
-	"github.com/korlvs/event-logging/libs/go-outbox"
+	outbox "github.com/korlvs/event-log"
 	"github.com/labstack/echo/v4"
 )
 

@@ -2,7 +2,7 @@ package gin
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/korlvs/event-logging/libs/go-outbox"
+	outbox "github.com/korlvs/event-log"
 )
 
 // RequestMetadata возвращает middleware для Gin.

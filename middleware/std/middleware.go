@@ -3,7 +3,7 @@ package std
 import (
 	"net/http"
 
-	"github.com/korlvs/event-logging/libs/go-outbox"
+	outbox "github.com/korlvs/event-log"
 )
 
 // Middleware оборачивает http.Handler и добавляет метаданные запроса в контекст.

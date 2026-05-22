@@ -75,10 +75,6 @@ github.com/klauspost/cpuid/v2 v2.3.0 h1:S4CRMLnYUhGeDFDqkGriYKdfoFlDnMtqTiI/sFzh
 github.com/klauspost/cpuid/v2 v2.3.0/go.mod h1:hqwkgyIinND0mEev00jJYCxPNVRVXFQeu1XKlok6oO0=
 github.com/korlvs/event-contract v0.1.0 h1:OxKOl47gpmvJCUT6P6q9LKar6I9NgB79RcOjhGiNsFQ=
 github.com/korlvs/event-contract v0.1.0/go.mod h1:bEXy/EO1VJIpEbwPUbYPsMOVaRZxy7hkIqw0EF62T5Q=
-github.com/korlvs/event-logging/contracts/event v0.5.0 h1:RraV6Am6cp2ohrX6lUqKwht2amh/pjZyppnWqd1FPBo=
-github.com/korlvs/event-logging/contracts/event v0.5.0/go.mod h1:9AMVR/b/IBSO3sB1HoFWfIbjDy2XjDbs3m5A02GZoeE=
-github.com/korlvs/event-logging/contracts/event v0.7.0 h1:HAXA8dhUkTZUQyOx+x64uwJJRSbygGr3W7E14Ud/7XY=
-github.com/korlvs/event-logging/contracts/event v0.7.0/go.mod h1:L8DJv7+iDNivesXXUV805PFESxRunBx9h45CAac7ouk=
 github.com/labstack/echo/v4 v4.15.2 h1:nnh2sCzGCVYnU+wCisMPiYapEg/QVo/gcI9ePKg5/T4=
 github.com/labstack/echo/v4 v4.15.2/go.mod h1:Xzp1Ns1RA2c9fY7nSgUJkpkUZGNbEIVHZbtbOMPktBI=
 github.com/labstack/gommon v0.5.0 h1:6VSQ2NOzsnEJ5W6+84E0RbcaDDmgB6NIAzWCczTEe6c=

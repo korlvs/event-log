@@ -1,10 +1,11 @@
-module github.com/korlvs/event-logging/libs/go-outbox
+module github.com/korlvs/event-log
 
 go 1.25.10
 
 require (
 	github.com/IBM/sarama v1.43.3
 	github.com/google/uuid v1.6.0
+	github.com/korlvs/event-contract v0.1.0
 	github.com/labstack/echo/v4 v4.15.2
 	google.golang.org/protobuf v1.36.11
 )
@@ -23,7 +24,6 @@ require (
 	github.com/goccy/go-yaml v1.19.2 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.3.0 // indirect
-	github.com/korlvs/event-contract v0.1.0 // indirect
 	github.com/labstack/gommon v0.5.0 // indirect
 	github.com/leodido/go-urn v1.4.0 // indirect
 	github.com/mattn/go-colorable v0.1.14 // indirect
@@ -60,7 +60,6 @@ require (
 	github.com/jcmturner/gokrb5/v8 v8.4.4 // indirect
 	github.com/jcmturner/rpc/v2 v2.0.3 // indirect
 	github.com/klauspost/compress v1.17.9 // indirect
-	github.com/korlvs/event-logging/contracts/event v0.5.0
 	github.com/pierrec/lz4/v4 v4.1.21 // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 // indirect
 	golang.org/x/crypto v0.50.0 // indirect

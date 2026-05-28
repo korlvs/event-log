@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/tls"
 	"fmt"
+	"strings"
 
 	"github.com/IBM/sarama"
 )
@@ -13,7 +14,7 @@ type SaramaSender struct {
 	topic    string
 }
 
-func NewSaramaSender(brokers []string, topic, username, password string, tlsEnabled, tlsInsecureSkipVerify bool) (*SaramaSender, error) {
+func NewSaramaSender(brokers []string, topic, username, password string, tlsEnabled, tlsInsecureSkipVerify bool, kafkaSaslMechanism string) (*SaramaSender, error) {
 	config := sarama.NewConfig()
 	config.Producer.RequiredAcks = sarama.WaitForAll
 	config.Producer.Retry.Max = 5
@@ -24,12 +25,25 @@ func NewSaramaSender(brokers []string, topic, username, password string, tlsEnab
 		config.Net.SASL.Enable = true
 		config.Net.SASL.User = username
 		config.Net.SASL.Password = password
-		config.Net.SASL.Mechanism = sarama.SASLTypePlaintext
+		switch strings.ToUpper(kafkaSaslMechanism) {
+		case "SCRAM-SHA-256":
+			config.Net.SASL.Mechanism = sarama.SASLTypeSCRAMSHA256
+			config.Net.SASL.SCRAMClientGeneratorFunc = func() sarama.SCRAMClient {
+				return &XDGSCRAMClient{HashGeneratorFcn: SHA256}
+			}
+		case "SCRAM-SHA-512":
+			config.Net.SASL.Mechanism = sarama.SASLTypeSCRAMSHA512
+			config.Net.SASL.SCRAMClientGeneratorFunc = func() sarama.SCRAMClient {
+				return &XDGSCRAMClient{HashGeneratorFcn: SHA512}
+			}
+		default:
+			config.Net.SASL.Mechanism = sarama.SASLTypePlaintext
+		}
 	}
 
 	// TLS
 	if tlsEnabled {
-		config.Net.TLS.Enable = true
+		config.Net.TLS.Enable = tlsEnabled
 		config.Net.TLS.Config = &tls.Config{
 			InsecureSkipVerify: tlsInsecureSkipVerify,
 		}

@@ -23,4 +23,5 @@ type Config struct {
 
 	KafkaTLSEnabled            bool
 	KafkaTLSInsecureSkipVerify bool
+	KafkaSaslMechanism         string
 }

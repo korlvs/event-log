@@ -85,6 +85,7 @@ func (o *Outbox) tryCreateSender() {
 			o.cfg.KafkaPassword,
 			o.cfg.KafkaTLSEnabled,
 			o.cfg.KafkaTLSInsecureSkipVerify,
+			o.cfg.KafkaSaslMechanism,
 		)
 	}
 	if err != nil {
